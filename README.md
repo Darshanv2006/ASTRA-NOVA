@@ -444,7 +444,7 @@ MIT License — see [LICENSE](./LICENSE) for details.
 ---
 
 <p align="center">
-  <img src="https://readme-typing-svg.herokuapp.com?font=Orbitron&size=30&duration=2500&pause=1000&color=00F7FF&center=true&vCenter=true&width=1000&lines=Welcome+to+ASTRA-NOVA;AI+for+Space+Intelligence;Real-Time+Satellite+Tracking;Collision+Prediction+System;Built+by+Darshan+V" />
+  <img src="https://readme-typing-svg.herokuapp.com?font=Orbitron&size=28&duration=2500&pause=800&color=00F7FF&center=true&vCenter=true&width=900&lines=Darshan+V;Software+Developer;AI+%26+Space-Tech+Explorer" />
 </p>
 ---
 
