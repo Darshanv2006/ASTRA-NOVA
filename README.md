@@ -1,60 +1,115 @@
 # ASTRA-NOVA
-Real-time 3D satellite tracking &amp; debris monitoring system with collision detection, mission planning, and live telemetry visualization.
 
-# 🚀 ASTRA-NOVA
+**AI-Powered Real-Time Satellite Health Monitoring & Collision Prevention System**
 
-<p align="center">
-  <img src="screenshots/banner.png" width="100%" />
-</p>
+Real-time 3D satellite tracking and space debris monitoring system with intelligent collision detection, mission planning, and live telemetry visualization.
 
-<p align="center">
-  🌍 Real-time 3D Satellite Tracking & Space Debris Monitoring System
-</p>
+![ASTRA-NOVA Banner](./screenshots/banner.png.png)
 
----
+## Features
 
-## ✨ Features
+### Core Capabilities
+- **Real-time 3D Earth Visualization** - Interactive globe rendering satellites and debris in 3D space
+- **Satellite Fleet Tracking** - Monitor thousands of satellites with live TLE propagation
+- **Collision Detection & Alerts** - AI-powered risk assessment and proximity warnings
+- **Debris Monitoring** - Track orbital debris and predict close approaches
+- **Mission Planning** - Plan and simulate satellite maneuvers
+- **Live Telemetry Dashboard** - Real-time health metrics and system diagnostics
+- **Analytics & Reporting** - Generate PDF reports and export telemetry data
 
-* 🌍 Real-time 3D Earth visualization
-* 🛰️ Satellite tracking system
-* 🚨 Collision detection & alerts
-* 📊 Telemetry dashboard
-* 📡 Live data monitoring
-* ⚡ Fast and interactive UI
+### Technical Highlights
+- Propagates satellite positions using SGP4 orbital mechanics
+- Real-time proximity analysis between all tracked objects
+- Alert severity classification (critical, warning, info)
+- System health monitoring with uptime tracking
+- Historical telemetry data storage
 
----
+## Tech Stack
 
-## 🛠️ Tech Stack
+### Frontend
+- **React 18** - UI framework with hooks and state management
+- **Vite** - Fast build tool and dev server
+- **Three.js / React Three Fiber** - 3D rendering and visualization
+- **Framer Motion** - Smooth animations and transitions
+- **Tailwind CSS** - Utility-first styling
+- **Leaflet** - 2D map integration
+- **satellite.js** - JavaScript satellite library
+- **jspdf** - PDF report generation
+- **lucide-react** - Icon library
 
-* ⚛️ React + Vite
-* 🌐 Three.js / React Three Fiber
-* 📡 Node.js (Backend)
-* 🛰️ Satellite APIs
-* 🎨 Modern UI
+### Backend
+- **Node.js** - JavaScript runtime
+- **Express** - Web framework
+- **better-sqlite3** - SQLite database
+- **satellite.js** - Satellite position propagation
+- **CORS** - Cross-origin resource sharing
+- **dotenv** - Environment variables
 
----
+### Data Sources
+- CelesTrak TLE data
+- N2YO satellite API
+- Custom JSON/TLE imports
 
-## 📸 Screenshots
+## Project Structure
 
-### 🏠 Home
+```
+ASTRA-NOVA/
+├── src/
+│   ├── components/          # React components
+│   │   ├── Dashboard3D.jsx  # 3D Earth dashboard
+│   │   ├── Earth3D.jsx     # 3D Earth renderer
+│   │   ├── SatelliteFleet.jsx
+│   │   ├── MissionControl.jsx
+│   │   ├── AlertsHub.jsx
+│   │   ├── Analytics.jsx
+│   │   ├── SystemHealthCenter.jsx
+│   │   └── ...
+│   ├── hooks/               # Custom React hooks
+│   │   ├── useTelemetry.jsx
+│   │   ├── useCollisionDetection.jsx
+│   │   ├── useDebrisDetection.jsx
+│   │   └── useBackendData.jsx
+│   ├── simulation/         # Mission simulation
+│   ├── utils/              # Utility functions
+│   │   ├── collisionCalculator.js
+│   │   ├── pdfGenerator.js
+│   │   └── openrouter.js
+│   ├── App.jsx             # Main app component
+│   ├── main.jsx            # Entry point
+│   └── index.css           # Global styles
+├── backend/
+│   ├── src/
+│   │   ├── server/         # Express server
+│   │   └── database/       # SQLite schema
+│   ├── scripts/           # Data import scripts
+│   ├── data/              # SQLite database
+│   └── package.json
+├── public/
+│   └── catalog.json        # Satellite catalog
+├── screenshots/           # Documentation images
+├── package.json
+├── vite.config.js
+├── tailwind.config.js
+└── postcss.config.js
+```
 
-![Home](screenshots/home.png)
+## Screenshots
 
-### 🌍 Earth Dashboard
+| Home Dashboard | Earth View | Alerts |
+|----------------|------------|---------|
+| ![Home](./screenshots/home.png.png) | ![Dashboard](./screenshots/dashboard-earth.png.png) | ![Alerts](./screenshots/alerts-diagnostics.png.png) |
 
-![Dashboard](screenshots/dashboard-earth.png)
+| Satellite Fleet |
+|----------------|
+| ![Fleet](./screenshots/satellite-fleet.png.png) |
 
-### 🚨 Alerts & Diagnostics
+## Installation & Setup
 
-![Alerts](screenshots/alerts-diagnostics.png)
+### Prerequisites
+- Node.js 18+
+- npm or yarn
 
-### 🛰️ Satellite Fleet
-
-![Fleet](screenshots/satellite-fleet.png)
-
----
-
-## 🚀 Installation & Setup
+### Steps
 
 ```bash
 # Clone the repository
@@ -63,78 +118,115 @@ git clone https://github.com/Darshanv2006/ASTRA-NOVA.git
 # Navigate into project folder
 cd ASTRA-NOVA
 
-# Install dependencies (important)
+# Install frontend dependencies
 npm install --legacy-peer-deps
 
-# Start development server
+# Install backend dependencies
+cd backend
+npm install
+cd ..
+
+# Start the backend server (in one terminal)
+cd backend
+npm run dev
+
+# Start the frontend (in another terminal)
 npm run dev
 ```
 
-👉 Open in browser: http://localhost:5173
+### Configuration
 
----
+Create a `.env` file in the root directory:
 
-## 📂 Project Structure
-
-```
-ASTRA-NOVA/
-├── src/
-├── public/
-├── backend/
-├── screenshots/
-├── README.md
-├── LICENSE
+```env
+VITE_BACKEND_URL=http://localhost:3002
 ```
 
----
+Create a `.env` file in the backend directory (copy from `.env.example`):
 
+```env
+PORT=3002
+BACKEND_URL=http://localhost:3002
+```
 
+### Access
 
-## 🤝 Contributing
+- Frontend: http://localhost:5173
+- Backend API: http://localhost:3002
 
-Contributions are welcome!
-Feel free to fork the repository and submit a pull request.
+## API Endpoints
 
----
+| Endpoint | Method | Description |
+|----------|--------|-------------|
+| `/api/satellites` | GET | Get all satellites |
+| `/api/satellites/:id` | GET | Get satellite by ID |
+| `/api/satellites/:id/telemetry` | GET | Get satellite telemetry |
+| `/api/satellites/:id/positions` | GET | Get satellite position history |
+| `/api/satellites/:id/missions` | GET | Get satellite missions |
+| `/api/satellites/:id/ground-track` | GET | Get ground track coordinates |
+| `/api/satellites/:id/passes` | GET | Get visible pass predictions |
+| `/api/satellites/positions/batch` | GET | Batch position updates |
+| `/api/agencies` | GET | Get space agencies |
+| `/api/alerts` | GET | Get alerts |
+| `/api/alerts` | POST | Create new alert |
+| `/api/missions` | GET | Get all missions |
+| `/api/missions` | POST | Create new mission |
+| `/api/telemetry-history` | GET | Get telemetry history |
+| `/api/positions/last-30min` | GET | Get positions from last 30 minutes |
+| `/api/debris` | GET | Get debris objects |
+| `/api/health` | GET | System health check |
 
-## 📜 License
+## Scripts
 
-This project is licensed under the [MIT License](LICENSE).
+### Import Satellite Data
 
----
+```bash
+# Import from CelesTrak
+cd backend
+node scripts/import-celestrak.js
 
-## 👨‍💻 Author
+# Import from N2YO
+node scripts/import-tle-n2yo.js
+
+# Import custom JSON
+node scripts/import-json-tle.js your-file.json
+
+# Import all CelesTrak categories
+node scripts/import-all-celestrak.js
+```
+
+### Update Satellite Positions
+
+```bash
+node scripts/update-positions.js
+```
+
+## Contributing
+
+Contributions are welcome! Feel free to fork the repository and submit a pull request.
+
+1. Fork the repo
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+## License
+
+MIT License - see [LICENSE](./LICENSE) for details.
+
+## Author
 
 **Darshan V**
+- GitHub: [@Darshanv2006](https://github.com/Darshanv2006)
+
+## Acknowledgments
+
+- [CelesTrak](https://celestrak.org/) - Satellite tracking data
+- [satellite.js](https://github.com/shashwatak/satellite.js) - SGP4 implementation
+- [Three.js](https://threejs.org/) - 3D graphics
+- All contributors and supporters
 
 ---
 
-⭐ If you like this project, give it a star!
-
-<p align="center">
-  AI-Powered Real-Time Satellite Health Monitoring & Collision Prevention System
-</p>
-
-<p align="center">
-  <img src="https://img.shields.io/badge/version-1.0-blue" />
-  <img src="https://img.shields.io/badge/license-MIT-green" />
-  <img src="https://img.shields.io/badge/React-18-blue?logo=react" />
-  <img src="https://img.shields.io/badge/Vite-fast-purple?logo=vite" />
-  <img src="https://img.shields.io/badge/Three.js-3D-black?logo=three.js" />
-</p>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+If you find this project useful, please give it a star!
