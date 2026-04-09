@@ -443,8 +443,10 @@ MIT License — see [LICENSE](./LICENSE) for details.
 
 ---
 
-<h1 align="center">Darshan V</h1>
-<p align="center">Full-Stack Developer | AI Enthusiast</p>
+## 👨‍💻 Author
+
+<h1 align="center">🚀 Darshan V</h1>
+<p align="center"><i>Creator of ASTRA-NOVA</i></p>
 ---
 
 ## 🙏 Acknowledgments
