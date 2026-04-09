@@ -110,3 +110,31 @@ This project is licensed under the [MIT License](LICENSE).
 ---
 
 ⭐ If you like this project, give it a star!
+
+<p align="center">
+  AI-Powered Real-Time Satellite Health Monitoring & Collision Prevention System
+</p>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/version-1.0-blue" />
+  <img src="https://img.shields.io/badge/license-MIT-green" />
+  <img src="https://img.shields.io/badge/React-18-blue?logo=react" />
+  <img src="https://img.shields.io/badge/Vite-fast-purple?logo=vite" />
+  <img src="https://img.shields.io/badge/Three.js-3D-black?logo=three.js" />
+</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
