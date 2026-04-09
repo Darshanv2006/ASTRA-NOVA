@@ -443,9 +443,19 @@ MIT License — see [LICENSE](./LICENSE) for details.
 
 ---
 
-## 👨‍💻 Author
+## 👨‍💻 Author  
 
-**Darshan V** — [GitHub](https://github.com/Darshanv2006)
+<p align="center">
+  <b>Darshan V</b>  
+</p>
+
+<p align="center">
+  Full-Stack Developer • AI Enthusiast
+</p>
+
+<p align="center">
+  🔗 <a href="https://github.com/Darshanv2006">GitHub</a>
+</p>
 
 ---
 
