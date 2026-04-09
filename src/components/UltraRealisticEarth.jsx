@@ -3,10 +3,10 @@ import { Canvas, useFrame } from '@react-three/fiber'
 import { useTexture } from '@react-three/drei'
 import * as THREE from 'three'
 
-useTexture.preload('/earth.jpg')
+useTexture.preload('https://unpkg.com/three-globe/example/img/earth-blue-marble.jpg')
 
 function SpinningGlobe({ satellites, rotating = true }) {
-  const colorMap = useTexture('/earth.jpg')
+  const colorMap = useTexture('https://unpkg.com/three-globe/example/img/earth-blue-marble.jpg')
   const groupRef = useRef()
 
   useFrame(() => {

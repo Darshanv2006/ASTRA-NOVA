@@ -76,10 +76,13 @@ app.get('/api/satellites', (req, res) => {
     const orderBy = sortBy === 'health' ? 's.health DESC' :
                     sortBy === 'altitude' ? 'o.altitude DESC' :
                     's.id ASC';
-    query += ` ORDER BY ${orderBy}`;
+    query += ` ORDER BY ${orderBy} LIMIT 100`;
 
     const satellites = db.prepare(query).all(...params);
     console.log('Fetched satellites count:', satellites.length);
+
+    // Get total count from database
+    const totalCount = db.prepare('SELECT COUNT(*) as cnt FROM satellites').get().cnt;
 
     // Transform data to match frontend format
     const transformed = satellites.map(sat => {
@@ -104,7 +107,7 @@ app.get('/api/satellites', (req, res) => {
       };
     });
 
-    res.json(transformed);
+    res.json({ satellites: transformed, totalCount });
   } catch (error) {
     console.error('Error fetching satellites:', error);
     res.status(500).json({ error: 'Failed to fetch satellites' });

@@ -143,7 +143,7 @@ function HeroSection() {
         }}
       >
         {/* Texture */}
-        <img src="/earth.jpg" alt="Earth"
+        <img src="https://unpkg.com/three-globe/example/img/earth-blue-marble.jpg" alt="Earth"
           className="absolute top-0 left-0 w-full h-full object-cover"
           style={{ objectPosition: 'center 30%', filter: 'brightness(1.1) contrast(1.12) saturate(1.15)' }}
         />

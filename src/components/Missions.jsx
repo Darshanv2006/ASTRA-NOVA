@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Calendar, Clock, Rocket, MapPin, Target, ChevronRight, Plus, X, Check, Search, Filter, Download } from 'lucide-react'
-import { generateMissionsPDF } from '../utils/pdfGenerator'
+import { Calendar, Clock, Rocket, MapPin, Target, ChevronRight, Plus, X, Check, Search, Filter } from 'lucide-react'
 
 const recentMissions = [
   {
@@ -176,14 +175,6 @@ function Missions({ satellites = [], missions: missionsProp = [] }) {
     }
   }
 
-  const handleExportPDF = async () => {
-    try {
-      await generateMissionsPDF(displayMissions)
-    } catch (err) {
-      console.error('Export failed:', err)
-    }
-  }
-
   return (
     <div className="space-y-16">
       {/* Section Header */}
@@ -227,14 +218,6 @@ function Missions({ satellites = [], missions: missionsProp = [] }) {
             <option value="name">Sort by Name</option>
             <option value="probability">Sort by Probability</option>
           </select>
-
-          <button
-            onClick={handleExportPDF}
-            className="flex items-center gap-2 px-4 py-2 bg-accent-cyan/10 border border-accent-cyan/30 text-accent-cyan rounded-lg hover:bg-accent-cyan/20 transition-all duration-300 text-sm"
-          >
-            <Download className="w-4 h-4" />
-            Export PDF
-          </button>
 
           <button
             onClick={() => setShowNewMission(!showNewMission)}

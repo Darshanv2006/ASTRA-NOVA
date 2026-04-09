@@ -351,6 +351,56 @@ const generateSatellites = () => {
   return allSatellites
 }
 
+// Generate mock alerts for demo purposes
+const generateMockAlerts = () => {
+  const alertTypes = ['critical', 'warning', 'info']
+  const alertTemplates = [
+    { title: 'Battery Warning', description: 'Satellite battery below 20% threshold', severity: 'high' },
+    { title: 'Orbital Adjustment', description: 'Scheduled station-keeping maneuver', severity: 'medium' },
+    { title: 'Signal Loss', description: 'Communication link degraded', severity: 'high' },
+    { title: 'Temperature Alert', description: 'Instrument temperature exceeding normal range', severity: 'medium' },
+    { title: 'Collision Warning', description: 'Proximity alert - potential conjunction detected', severity: 'critical' },
+    { title: 'Data Upload Complete', description: 'Telemetry data successfully uploaded', severity: 'low' },
+    { title: 'Software Update', description: 'Firmware update available', severity: 'low' },
+    { title: 'Power System Alert', description: 'Solar panel efficiency below expected', severity: 'medium' }
+  ]
+  
+  const satellites = ['STARLINK-1001', 'GPS-BLOCK3', 'ISS-ZARYA', 'NOAA-19', 'SENTINEL-1A']
+  
+  const alerts = []
+  for (let i = 0; i < 8; i++) {
+    const template = alertTemplates[i % alertTemplates.length]
+    const type = alertTypes[Math.floor(Math.random() * alertTypes.length)]
+    const satId = satellites[Math.floor(Math.random() * satellites.length)]
+    
+    alerts.push({
+      id: i + 1,
+      type,
+      severity: template.severity,
+      title: template.title,
+      description: `${template.description} - ${satId}`,
+      read: Math.random() > 0.5,
+      timestamp: new Date(Date.now() - Math.random() * 86400000 * 3),
+      satelliteId: satId
+    })
+  }
+  
+  return alerts
+}
+
+// Generate mock missions for demo purposes
+const generateMockMissions = () => {
+  const missions = [
+    { id: 1, name: 'Nova-51', description: 'NovaSat-12 constellation deployment', status: 'ready', startDate: '2026-05-08T09:15:00Z', agency: 'SPACEX', satelliteId: 'NOVA-51' },
+    { id: 2, name: 'Nova-52', description: 'Starlink v2 Group 12', status: 'countdown', startDate: '2026-04-25T14:30:00Z', agency: 'SPACEX', satelliteId: 'NOVA-52' },
+    { id: 3, name: 'Terra-07', description: 'Earth observation satellite deployment', status: 'go', startDate: '2026-04-18T06:45:00Z', agency: 'NASA', satelliteId: 'TERRA-07' },
+    { id: 4, name: 'CommLink-3', description: 'Communications relay satellite', status: 'planned', startDate: '2026-05-15T11:00:00Z', agency: 'ESA', satelliteId: 'COMMLINK-3' },
+    { id: 5, name: 'GPS-III-SV05', description: 'GPS navigation satellite', status: 'completed', startDate: '2026-03-28T10:30:00Z', endDate: '2026-03-28T10:35:00Z', agency: 'USSF', satelliteId: 'GPS-III-05' },
+    { id: 6, name: 'Sentinel-6B', description: 'Ocean observation mission', status: 'completed', startDate: '2026-03-10T07:22:00Z', endDate: '2026-03-10T07:28:00Z', agency: 'ESA', satelliteId: 'SENTINEL-6B' }
+  ]
+  return missions
+}
+
 // Timeout wrapper for fetch
 const fetchWithTimeout = (url, options = {}, timeout = 5000) => {
   return new Promise((resolve, reject) => {
@@ -377,7 +427,8 @@ const fetchBackendSatellitesQuick = async () => {
     if (!response.ok) throw new Error('Failed to fetch from backend')
     const data = await response.json()
     const satellites = data.satellites || data
-    return satellites.map(sat => ({
+    const totalCount = data.totalCount || satellites.length
+    return { satellites: satellites.map(sat => ({
       id: sat.id,
       name: sat.name,
       agency: sat.agency,
@@ -403,7 +454,7 @@ const fetchBackendSatellitesQuick = async () => {
         signalStrength: sat.communication?.signalStrength || 85
       },
 
-    }))
+    })), totalCount }
   } catch (error) {
     console.warn('Backend fetch failed:', error.message)
     return null
@@ -436,15 +487,19 @@ export function useTelemetry() {
         data = generateSatellites()
       }
 
-      setSatellites(data || [])
+      // Handle both object format (from backend) and array format (from mock)
+      const satelliteList = data.satellites || data
+      const totalFromBackend = data.totalCount
+
+      setSatellites(satelliteList || [])
       setInitialDataLoaded(true)
       setIsLoading(false)
 
       // Calculate metrics
-      const totalSatellites = data?.length || 0
-      const activeSatellites = data?.filter(s => s.status === 'active').length || 0
+      const totalSatellites = totalFromBackend || satelliteList?.length || 0
+      const activeSatellites = satelliteList?.filter(s => s.status === 'active').length || 0
       const averageHealth = totalSatellites > 0
-        ? data.reduce((sum, s) => sum + (s.health || 0), 0) / totalSatellites
+        ? satelliteList.reduce((sum, s) => sum + (s.health || 0), 0) / satelliteList.length
         : 0
 
       setMetrics({
@@ -462,12 +517,14 @@ export function useTelemetry() {
       // Load additional data in background (non-blocking)
       if (USE_BACKEND) {
         Promise.allSettled([
-          fetchBackendAlerts().then(data => setAlerts(data || [])).catch(() => {}),
-          fetchBackendMissions().then(data => setMissions(data || [])).catch(() => {}),
+          fetchBackendAlerts().then(data => setAlerts(data?.length > 0 ? data : generateMockAlerts())).catch(() => setAlerts(generateMockAlerts())),
+          fetchBackendMissions().then(data => setMissions(data?.length > 0 ? data : generateMockMissions())).catch(() => setMissions(generateMockMissions())),
           fetchBackendTelemetryHistory().then(data => setTelemetryHistory(data || [])).catch(() => {}),
           fetchDebrisCatalog().then(data => setDebris(data || [])).catch(() => {})
         ])
       } else {
+        // Use mock data when no backend
+        setAlerts(generateMockAlerts())
         // Fetch debris even without backend (from local file)
         fetchDebrisCatalog().then(data => setDebris(data || [])).catch(() => {})
       }

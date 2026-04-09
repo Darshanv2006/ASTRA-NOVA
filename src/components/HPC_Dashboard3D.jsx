@@ -142,10 +142,10 @@ function SegmentedGauge({ label, value, max = 100, color = 'cyan', delay = 0 }) 
 // 3D EARTH COMPONENTS
 // ----------------------------------------------------
 
-useTexture.preload('/earth.jpg')
+useTexture.preload('https://unpkg.com/three-globe/example/img/earth-blue-marble.jpg')
 
 function EarthSphere() {
-  const colorMap = useTexture('/earth.jpg')
+  const colorMap = useTexture('https://unpkg.com/three-globe/example/img/earth-blue-marble.jpg')
   return (
     <group>
       {/* Core Earth */}
