@@ -443,9 +443,8 @@ MIT License — see [LICENSE](./LICENSE) for details.
 
 ---
 
-<p align="center">
-  <img src="https://readme-typing-svg.herokuapp.com?font=Orbitron&size=28&duration=2500&pause=800&color=00F7FF&center=true&vCenter=true&width=900&lines=Darshan+V;Software+Developer;AI+%26+Space-Tech+Explorer" />
-</p>
+<h1 align="center">Darshan V</h1>
+<p align="center">Full-Stack Developer | AI Enthusiast</p>
 ---
 
 ## 🙏 Acknowledgments
