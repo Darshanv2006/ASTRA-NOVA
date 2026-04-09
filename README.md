@@ -443,10 +443,9 @@ MIT License — see [LICENSE](./LICENSE) for details.
 
 ---
 
-## 👨‍💻 Author
-
-**Darshan V** — [GitHub](https://github.com/Darshanv2006)
-
+<p align="center">
+  <img src="https://readme-typing-svg.herokuapp.com?font=Orbitron&size=30&duration=2500&pause=1000&color=00F7FF&center=true&vCenter=true&width=1000&lines=Welcome+to+ASTRA-NOVA;AI+for+Space+Intelligence;Real-Time+Satellite+Tracking;Collision+Prediction+System;Built+by+Darshan+V" />
+</p>
 ---
 
 ## 🙏 Acknowledgments
