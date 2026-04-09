@@ -88,11 +88,7 @@ ASTRA-NOVA/
 
 ---
 
-## 🌍 Live Demo
 
-🚀 Coming Soon...
-
----
 
 ## 🤝 Contributing
 
