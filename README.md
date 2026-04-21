@@ -22,7 +22,7 @@
 ## ✨ Features
 
 ### 🌍 Earth Visualization
-- **Interactive 3D Globe** — Real-time rotating Earth with day/night shader
+- **Interactive 3D Globe** — Real-time rotating Earth with day/night shader.
 - **Satellite Orbits** — Visualize orbital paths around Earth
 - **Debris Tracking** — Monitor space debris in real-time
 - **Ground Stations** — View ground station locations
